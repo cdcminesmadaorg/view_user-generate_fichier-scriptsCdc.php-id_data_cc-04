@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        #video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video-player" autoplay muted playsinline>
+            <source src="presentation.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        const video = document.getElementById('video-player');
+        
+        // Figer sur la dernière image
+        video.addEventListener('ended', function() {
+            video.pause();
+        });
+
+        // Simulation de plein écran CSS (remplace le vrai plein écran)
+        function resizeVideo() {
+            const container = document.getElementById('video-container');
+            container.style.width = window.innerWidth + 'px';
+            container.style.height = window.innerHeight + 'px';
+        }
+        
+        window.addEventListener('resize', resizeVideo);
+        resizeVideo(); // Applique immédiatement
+    </script>
+</body>
+</html>
